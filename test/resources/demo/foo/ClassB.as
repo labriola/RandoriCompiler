@@ -228,8 +228,9 @@ public class ClassB extends ClassA
     
     public function const_string():void
     {
-        const RANDORI_VENDOR_ITEM_EXPRESSION:String = "\\s?-randori-([\\w\\W]+?)\\s?:\\s?[\"\']?([\\w\\W]+?)[\"\']?;";
+        const RANDORI_VENDOR_ITEM_EXPRESSION:String = ";";
         var anyVendorItems:RegExp = new RegExp(RANDORI_VENDOR_ITEM_EXPRESSION, "g");
+        foo(CONSTANT);
     }
     
     

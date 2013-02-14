@@ -3,6 +3,8 @@ package demo.foo
 
 public class ClassA
 {
+    public static const CONSTANT:int = 0;
+    
     private var thenContracts:Array;
     
     public function get renderFunction():Function

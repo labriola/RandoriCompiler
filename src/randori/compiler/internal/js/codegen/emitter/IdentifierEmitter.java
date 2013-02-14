@@ -25,8 +25,6 @@ import org.apache.flex.compiler.definitions.IConstantDefinition;
 import org.apache.flex.compiler.definitions.IDefinition;
 import org.apache.flex.compiler.definitions.IFunctionDefinition;
 import org.apache.flex.compiler.definitions.IVariableDefinition;
-import org.apache.flex.compiler.internal.tree.as.VariableNode;
-import org.apache.flex.compiler.tree.as.IBinaryOperatorNode;
 import org.apache.flex.compiler.tree.as.IContainerNode;
 import org.apache.flex.compiler.tree.as.IExpressionNode;
 import org.apache.flex.compiler.tree.as.IFunctionCallNode;
@@ -154,12 +152,12 @@ public class IdentifierEmitter extends BaseSubEmitter implements
     private void emitIdentifierConstant(IIdentifierNode node,
             IConstantDefinition definition)
     {
-        if (node.getParent() instanceof VariableNode
-                || !(node.getParent() instanceof IBinaryOperatorNode))
+        if (!(definition.getParent() instanceof IClassDefinition))
         {
             write(definition.getBaseName());
             return;
         }
+
         if (definition.getBaseName().equals("undefined"))
         {
             write("undefined");

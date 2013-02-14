@@ -312,8 +312,10 @@ public class ClassBTest extends ResourceTestBase
     {
         IFunctionNode node = findFunction("const_string", classNode);
         visitor.visitFunction(node);
-        //assertOut("demo.foo.ClassB.prototype.const_string = function() {\n\tconst RANDORI_VENDOR_ITEM_EXPRESSION = " +
-        //		""\\\\s?-randori-([\\\\w\\\\W]+?)\\\\s?:\\\\s?[\\"\\']?([\\\\w\\\\W]+?)[\\"\\']?;";\n}");
+        assertOut("demo.foo.ClassB.prototype.const_string = function() {"
+                + "\n\tconst RANDORI_VENDOR_ITEM_EXPRESSION = \";\";\n\tvar "
+                + "anyVendorItems = new RegExp(RANDORI_VENDOR_ITEM_EXPRESSION, \"g\")"
+                + ";\n\tthis.get_foo()(0);\n}");
     }
 
     @Test
