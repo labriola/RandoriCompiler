@@ -236,6 +236,8 @@ public class MetaDataUtils
     public static final IMetaTagNode findMetaTag(IDefinitionNode node,
             String name)
     {
+        if (node.getMetaTags() == null)
+            return null;
         return node.getMetaTags().getTagByName(name);
     }
 

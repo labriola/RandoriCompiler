@@ -46,9 +46,8 @@ public class TargetsServiceTest extends RandoriTestProjectBase
         IFunctionNode node = findFunction("get", classNode);
         visitor.visitFunction(node);
         assertOut("services.TargetsService.prototype.get = function() {"
-                + "\n\tvar promise = this.sendRequest(\"GET\", this.config.protocol, "
-                + "this.config.host, this.config.port, this.path);\n\tvar parserPromise "
-                + "= promise.then(this.targets.parseResult);\n\treturn parserPromise;\n}");
+                + "\n\tvar promise = this.sendRequest(\"GET\", this.path);\n\tvar "
+                + "parserPromise = promise.then(this.targets.parseResult);\n\treturn parserPromise;\n}");
     }
 
     @Test

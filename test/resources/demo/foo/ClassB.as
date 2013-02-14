@@ -5,6 +5,7 @@ import randori.jquery.Event;
 import randori.jquery.JQuery;
 import randori.jquery.JQueryStatic;
 import randori.webkit.fileapi.FileReader;
+import randori.webkit.html.HTMLBRElement;
 import randori.webkit.page.Window;
 
 public class ClassB extends ClassA
@@ -240,6 +241,14 @@ public class ClassB extends ClassA
             listener = thenContracts.pop();
             listener.apply(this, args );
         }
+    }
+    
+    public function new_HTMLBRElement():void
+    {
+        var breakIt:HTMLBRElement = new HTMLBRElement();
+        breakIt.onchange = function() {
+            Window.console.log("We did it!");
+        };
     }
 }
 }

@@ -32,11 +32,14 @@ import org.apache.flex.compiler.definitions.ITypeDefinition;
 import org.apache.flex.compiler.definitions.IVariableDefinition;
 import org.apache.flex.compiler.internal.definitions.AppliedVectorDefinition;
 import org.apache.flex.compiler.projects.ICompilerProject;
+import org.apache.flex.compiler.tree.as.IDefinitionNode;
 import org.apache.flex.compiler.tree.as.IExpressionNode;
 import org.apache.flex.compiler.tree.as.IFunctionCallNode;
+import org.apache.flex.compiler.tree.metadata.IMetaTagNode;
 
 import randori.compiler.internal.js.utils.DefinitionUtils;
 import randori.compiler.internal.js.utils.MetaDataUtils;
+import randori.compiler.internal.js.utils.MetaDataUtils.MetaData;
 import randori.compiler.internal.js.utils.MetaDataUtils.MetaData.Mode;
 import randori.compiler.js.codegen.IRandoriEmitter;
 import randori.compiler.js.codegen.ISubEmitter;
@@ -141,6 +144,28 @@ public class NewStatementEmitter extends BaseSubEmitter implements
                 getEmitter().walkArguments(node);
                 write("]");
                 return;
+            }
+            else if (!MetaDataUtils.isExport(expression))
+            {
+                // get the constructor  
+                IFunctionDefinition constructor = ((IClassDefinition) expression)
+                        .getConstructor();
+
+                IDefinitionNode dnode = constructor.getFunctionNode();
+                if (dnode != null)
+                {
+                    IMetaTagNode tag = MetaDataUtils.findMetaTag(dnode,
+                            MetaData.JavaScriptMethod.getName());
+                    if (tag != null)
+                    {
+                        String name = tag.getAttributeValue("name");
+                        if (name != null)
+                        {
+                            write(name);
+                            return;
+                        }
+                    }
+                }
             }
         }
 

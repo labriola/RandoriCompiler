@@ -330,6 +330,16 @@ public class ClassBTest extends ResourceTestBase
     }
 
     @Test
+    public void new_HTMLBRElement()
+    {
+        IFunctionNode node = findFunction("new_HTMLBRElement", classNode);
+        visitor.visitFunction(node);
+        assertOut("demo.foo.ClassB.prototype.new_HTMLBRElement = function() {"
+                + "\n\tvar breakIt = document.createElement('br');\n\tbreakIt.onchange = "
+                + "$createDelegate(this, function() {\n\t\tconsole.log(\"We did it!\");\n\t});\n}");
+    }
+
+    @Test
     public void test_file()
     {
         visitor.visitFile(fileNode);

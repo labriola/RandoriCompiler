@@ -224,7 +224,7 @@ public abstract class RandoriTestProjectBase extends TestWalkerBase
 
         StringBuilder sb = new StringBuilder();
         sb.append("/** Compiled " + new Date().toString() + "*/\n\n");
-        
+
         for (TreeMap<String, IFileNode> sub : map.values())
         {
             for (IFileNode fileNode : sub.values())
@@ -365,10 +365,10 @@ public abstract class RandoriTestProjectBase extends TestWalkerBase
         super.addLibrary(libraries);
         String base = TestConstants.RandoriASFramework;
 
-        libraries.add(new File(FilenameNormalization.normalize(base
-                + "HTMLCoreLib\\bin\\HTMLCoreLib.swc")));
-        libraries.add(new File(FilenameNormalization.normalize(base
-                + "JQuery\\bin\\JQuery.swc")));
+        //        libraries.add(new File(FilenameNormalization.normalize(base
+        //                + "HTMLCoreLib\\bin\\HTMLCoreLib.swc")));
+        //        libraries.add(new File(FilenameNormalization.normalize(base
+        //                + "JQuery\\bin\\JQuery.swc")));
         //        libraries.add(new File(FilenameNormalization.normalize(base
         //                + "Randori\\bin\\Randori.swc")));
         //        libraries.add(new File(FilenameNormalization.normalize(base
@@ -381,6 +381,10 @@ public abstract class RandoriTestProjectBase extends TestWalkerBase
         super.addSourcePaths(sourcePaths);
         String base = TestConstants.RandoriASFramework;
 
+        sourcePaths.add(new File(FilenameNormalization.normalize(base
+                + "HTMLCoreLib\\src")));
+        sourcePaths.add(new File(FilenameNormalization.normalize(base
+                + "JQuery\\src")));
         sourcePaths.add(new File(FilenameNormalization.normalize(base
                 + "DemoApplication\\src")));
         sourcePaths.add(new File(FilenameNormalization.normalize(base
