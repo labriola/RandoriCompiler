@@ -159,7 +159,8 @@ public class NewStatementEmitter extends BaseSubEmitter implements
                     if (tag != null)
                     {
                         String name = tag.getAttributeValue("name");
-                        if (name != null)
+                        String omitNew = tag.getAttributeValue("omitnewoperator");
+                        if (name != null && omitNew != null && omitNew.equals("true"))
                         {
                             write(name);
                             return;
