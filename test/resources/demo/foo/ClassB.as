@@ -250,5 +250,17 @@ public class ClassB extends ClassA
             Window.console.log("We did it!");
         };
     }
+    
+    public function proto_default_parameter_arg_replacement(one:int, two:int = 2, three:String = "default"):void
+    {
+        var something:Function;
+        something(one, two, three);
+        var a:int = two;
+        foo = three;
+    }
+    public function getter_in_return():void
+    {
+        return data;
+    }
 }
 }

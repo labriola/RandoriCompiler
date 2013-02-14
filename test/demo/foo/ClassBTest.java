@@ -339,6 +339,26 @@ public class ClassBTest extends ResourceTestBase
                 + "$createDelegate(this, function() {\n\t\tconsole.log(\"We did it!\");\n\t});\n}");
     }
 
+    //@Test
+    public void proto_default_parameter_arg_replacement()
+    {
+        IFunctionNode node = findFunction(
+                "proto_default_parameter_arg_replacement", classNode);
+        visitor.visitFunction(node);
+        assertOut("demo.foo.ClassB.prototype.new_HTMLBRElement = function() {"
+                + "\n\tvar breakIt = document.createElement('br');\n\tbreakIt.onchange = "
+                + "$createDelegate(this, function() {\n\t\tconsole.log(\"We did it!\");\n\t});\n}");
+    }
+
+    @Test
+    public void getter_in_return()
+    {
+        IFunctionNode node = findFunction("getter_in_return", classNode);
+        visitor.visitFunction(node);
+        assertOut("demo.foo.ClassB.prototype.getter_in_return = function() {"
+                + "\n\treturn this.get_data();\n}");
+    }
+
     @Test
     public void test_file()
     {

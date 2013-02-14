@@ -32,6 +32,7 @@ import org.apache.flex.compiler.tree.as.IFunctionCallNode;
 import org.apache.flex.compiler.tree.as.IIdentifierNode;
 import org.apache.flex.compiler.tree.as.IMemberAccessExpressionNode;
 import org.apache.flex.compiler.tree.as.IParameterNode;
+import org.apache.flex.compiler.tree.as.IReturnNode;
 import org.apache.flex.compiler.tree.as.IStatementNode;
 
 import randori.compiler.internal.js.utils.ExpressionUtils;
@@ -198,6 +199,7 @@ public class IdentifierEmitter extends BaseSubEmitter implements
                 write("get_" + name);
                 // for now if (get_foo()) {} TODO this is proto, does it work right?
                 if (node.getParent() instanceof IStatementNode
+                        || node.getParent() instanceof IReturnNode
                         || node.getParent() instanceof IContainerNode
                         || node.getParent() instanceof IFunctionCallNode)
                     write("()");
