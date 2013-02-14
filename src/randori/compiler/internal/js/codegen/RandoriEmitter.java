@@ -99,13 +99,6 @@ public class RandoriEmitter extends JSEmitter implements IRandoriEmitter
     private HeaderEmitter header;
 
     private FooterEmitter footer;
-    
-    @Override
-    public void emitVarDeclaration(IVariableNode node)
-    {
-        // TODO Auto-generated method stub
-        super.emitVarDeclaration(node);
-    }
 
     public RandoriEmitter(FilterWriter out)
     {
@@ -120,7 +113,6 @@ public class RandoriEmitter extends JSEmitter implements IRandoriEmitter
 
         header = new HeaderEmitter(this);
         footer = new FooterEmitter(this);
-
     }
 
     @Override

@@ -47,7 +47,7 @@ public class RandoriFrameworkTest extends RandoriTestProjectBase
     @Test
     public void test_renderList()
     {
-        IFunctionNode node = findFunction("parseAndPersistBehaviors", classNode);
+        IFunctionNode node = findFunction("dispatch", classNode);
         visitor.visitFunction(node);
         //assertOut("views.mediators.LabsMediator.prototype.onRegister = function() {"
         //        + "\n\tthis.message.text(\"Labs Mediator Loaded and Registered\");\n}");
@@ -62,7 +62,7 @@ public class RandoriFrameworkTest extends RandoriTestProjectBase
     @Override
     protected String getTypeUnderTest()
     {
-        return "randori.styles.StyleExtensionManager";
+        return "randori.signal.SimpleSignal";
     }
 
 }

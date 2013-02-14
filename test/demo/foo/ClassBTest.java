@@ -319,6 +319,17 @@ public class ClassBTest extends ResourceTestBase
     }
 
     @Test
+    public void transform_rest_to_arguments()
+    {
+        IFunctionNode node = findFunction("transform_rest_to_arguments",
+                classNode);
+        visitor.visitFunction(node);
+        assertOut("demo.foo.ClassB.prototype.transform_rest_to_arguments = function(args) {"
+                + "\n\tvar listener;\n\twhile (this.thenContracts.length > 0) {\n\t\t"
+                + "listener = this.thenContracts.pop();\n\t\tlistener.apply(this, arguments);\n\t}\n}");
+    }
+
+    @Test
     public void test_file()
     {
         visitor.visitFile(fileNode);

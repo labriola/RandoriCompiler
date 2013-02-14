@@ -24,12 +24,14 @@ import org.apache.flex.compiler.definitions.IClassDefinition;
 import org.apache.flex.compiler.definitions.IConstantDefinition;
 import org.apache.flex.compiler.definitions.IDefinition;
 import org.apache.flex.compiler.definitions.IFunctionDefinition;
+import org.apache.flex.compiler.definitions.IParameterDefinition;
 import org.apache.flex.compiler.definitions.IVariableDefinition;
 import org.apache.flex.compiler.tree.as.IContainerNode;
 import org.apache.flex.compiler.tree.as.IExpressionNode;
 import org.apache.flex.compiler.tree.as.IFunctionCallNode;
 import org.apache.flex.compiler.tree.as.IIdentifierNode;
 import org.apache.flex.compiler.tree.as.IMemberAccessExpressionNode;
+import org.apache.flex.compiler.tree.as.IParameterNode;
 import org.apache.flex.compiler.tree.as.IStatementNode;
 
 import randori.compiler.internal.js.utils.ExpressionUtils;
@@ -70,6 +72,10 @@ public class IdentifierEmitter extends BaseSubEmitter implements
         else if (definition instanceof IFunctionDefinition)
         {
             emitIdentifierFunction(node, (IFunctionDefinition) definition);
+        }
+        else if (definition instanceof IParameterDefinition)
+        {
+            emitIdentifierParameter(node, (IParameterDefinition) definition);
         }
         else if (definition instanceof IConstantDefinition)
         {
@@ -208,5 +214,19 @@ public class IdentifierEmitter extends BaseSubEmitter implements
     {
         String name = MetaDataUtils.getFunctionName(definition);
         write(name);
+    }
+
+    private void emitIdentifierParameter(IIdentifierNode node,
+            IParameterDefinition definition)
+    {
+        if (definition.isRest()
+                && !(node.getParent() instanceof IParameterNode))
+        {
+            write("arguments");
+        }
+        else
+        {
+            write(node.getName());
+        }
     }
 }

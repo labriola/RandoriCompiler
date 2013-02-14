@@ -233,6 +233,13 @@ public class ClassB extends ClassA
         foo(CONSTANT);
     }
     
-    
+    public function transform_rest_to_arguments( ...args ):void {
+        var listener:Function
+      
+        while ( thenContracts.length > 0 ) {
+            listener = thenContracts.pop();
+            listener.apply(this, args );
+        }
+    }
 }
 }

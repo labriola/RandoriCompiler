@@ -67,8 +67,8 @@ public class VerticalTabsTest extends RandoriTestProjectBase
         IFunctionNode node = findFunction("listChangedHandler", classNode);
         visitor.visitFunction(node);
         assertOut("behaviors.VerticalTabs.prototype.listChangedHandler = function(index, data) {"
-                + "\n\tif (this.menuItemSelected != null && data != null) {\n\t\tvar menuItem = "
-                + "{name:data[\"name\"], url:data[\"url\"]};\n\t\tthis.menuItemSelected(menuItem);\n\t}\n}");
+                + "\n\tif (data != null) {\n\t\tvar menuItem = {name:data[\"name\"], url:data[\"url\"]"
+                + "};\n\t\tthis.menuItemSelected.dispatch(menuItem);\n\t}\n}");
     }
 
     @Test
