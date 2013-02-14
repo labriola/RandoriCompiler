@@ -86,11 +86,13 @@ public class NewStatementEmitter extends BaseSubEmitter implements
                 write(ASTokens.NEW);
                 write(ASTokens.SPACE);
                 //String name = RandoriUtils.toNewAccessorPrefix(node, (IFunctionDefinition) vdef, project);
-                //write(name);
+                write("(");
                 getWalker().walk(node.getNameNode());
+                write(")");
                 write(ASTokens.PAREN_OPEN);
                 getEmitter().walkArguments(node);
                 write(ASTokens.PAREN_CLOSE);
+
                 return;
             }
             else

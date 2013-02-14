@@ -28,6 +28,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Date;
 import java.util.List;
 import java.util.TreeMap;
 
@@ -222,6 +223,8 @@ public abstract class RandoriTestProjectBase extends TestWalkerBase
         // Globals first
 
         StringBuilder sb = new StringBuilder();
+        sb.append("/** Compiled " + new Date().toString() + "*/\n\n");
+        
         for (TreeMap<String, IFileNode> sub : map.values())
         {
             for (IFileNode fileNode : sub.values())
@@ -277,7 +280,7 @@ public abstract class RandoriTestProjectBase extends TestWalkerBase
                 sb.append(writer.toString());
             }
         }
-        //writeFile("C:\\Users\\Work\\Desktop\\Randori.as", sb.toString());
+        writeFile("C:\\Users\\Work\\Desktop\\Randori.as", sb.toString());
     }
 
     protected void compileAll()

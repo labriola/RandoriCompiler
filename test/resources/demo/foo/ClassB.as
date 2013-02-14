@@ -226,5 +226,12 @@ public class ClassB extends ClassA
         a = renderFunction(j, data[j]);
     }
     
+    public function const_string():void
+    {
+        const RANDORI_VENDOR_ITEM_EXPRESSION:String = "\\s?-randori-([\\w\\W]+?)\\s?:\\s?[\"\']?([\\w\\W]+?)[\"\']?;";
+        var anyVendorItems:RegExp = new RegExp(RANDORI_VENDOR_ITEM_EXPRESSION, "g");
+    }
+    
+    
 }
 }

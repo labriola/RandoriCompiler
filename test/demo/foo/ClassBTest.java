@@ -242,7 +242,7 @@ public class ClassBTest extends ResourceTestBase
         IFunctionNode node = findFunction("new_anytype", classNode);
         visitor.visitFunction(node);
         assertOut("demo.foo.ClassB.prototype.new_anytype = function() {\n\tvar "
-                + "instance = null;\n\tif (false)\n\t\tinstance = new this.get_type()();\n}");
+                + "instance = null;\n\tif (false)\n\t\tinstance = new (this.get_type())();\n}");
     }
 
     @Test
@@ -305,6 +305,15 @@ public class ClassBTest extends ResourceTestBase
         visitor.visitFunction(node);
         assertOut("demo.foo.ClassB.prototype.functioncall_getter_invoke = function() {"
                 + "\n\tvar a;\n\ta = this.get_renderFunction()(this.j, this.get_data()[this.j]);\n}");
+    }
+
+    @Test
+    public void const_string()
+    {
+        IFunctionNode node = findFunction("const_string", classNode);
+        visitor.visitFunction(node);
+        //assertOut("demo.foo.ClassB.prototype.const_string = function() {\n\tconst RANDORI_VENDOR_ITEM_EXPRESSION = " +
+        //		""\\\\s?-randori-([\\\\w\\\\W]+?)\\\\s?:\\\\s?[\\"\\']?([\\\\w\\\\W]+?)[\\"\\']?;";\n}");
     }
 
     @Test
